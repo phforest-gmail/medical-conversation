@@ -1,0 +1,4 @@
+.vscode
+medical_conversations/__pycache__
+medical_conversations.egg-info
+uv.lock
