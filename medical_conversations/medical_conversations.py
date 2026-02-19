@@ -7,7 +7,7 @@ this_folder = Path(__file__).parent
 
 class MedicalConversations:
 
-    FILTERS = {"QuestionHealthIssue", "AbsentHealthIssue", "HealthIssue"}
+    FILTERS = {"QuestionHealthIssue", "AbsentHealthIssue", "HealthIssue","NegativeAnswer","BodyPart"}
 
     def __init__(self, pipeline: str):
         self._pipeline = Pipeline(pipeline)
