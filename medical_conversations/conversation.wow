@@ -1,0 +1,2 @@
+rule: { "Speaker" "[A-Z]" } = Speaker; 
+rule: { "(D|P)" ":" } = Speaker; 
