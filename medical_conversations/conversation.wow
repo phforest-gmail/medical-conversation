@@ -1,3 +1,3 @@
 rule: { "Speaker" "[A-Z]" } = Speaker; 
-rule: { "(D|P)" ":" } = Speaker; 
-rule: { Sentence[ ":" 'no'] } = NegativeAnswer;
+rule: { "(D|P)" ":" } = Speaker;
+rule: { Sentence[ ":" '(no|nope|never)'] } = NegativeAnswer;

@@ -5,10 +5,8 @@ from wowool.document import Document
 import json
 
 
-
 class ParseConversation:
 
-    
     def __init__(self):
         self._pipeline = Pipeline("english")
         self.speakers = Domain(source="""
@@ -18,7 +16,7 @@ rule: { "(D|P)" ":" } = Speaker;
 
     def __call__(self, input: str | Document):
         doc = self.speakers(self._pipeline(input))
-        conversation  = []
+        conversation = []
 
         previous_speaker = None
 
@@ -26,14 +24,21 @@ rule: { "(D|P)" ":" } = Speaker;
             speaker = sentence.Speaker
             if speaker:
                 previous_speaker = speaker
-            conversation.append({
+            conversation.append(
+                {
                     "start": sentence.begin_offset,
                     "end": sentence.end_offset,
-                    "speaker": previous_speaker.literal if previous_speaker else "Unknown",
-                    "text": sentence.text[len(previous_speaker.literal)+1:] if previous_speaker else sentence.text,
-                })
+                    "speaker": (
+                        previous_speaker.literal if previous_speaker else "Unknown"
+                    ),
+                    "text": (
+                        sentence.text[len(previous_speaker.literal) + 1 :]
+                        if previous_speaker
+                        else sentence.text
+                    ),
+                }
+            )
         return {"conversation": conversation}
-
 
 
 def parse_args():
